@@ -1,0 +1,8 @@
+__pycache__/
+.pytest_cache/
+reports/
+screenshots/
+logs/
+.git/
+.vscode/
+.env
