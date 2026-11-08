@@ -14,3 +14,6 @@ screenshots/
 
 # Environment variables
 .env
+
+#logs
+logs/
