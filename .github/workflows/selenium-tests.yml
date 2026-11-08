@@ -1,0 +1,35 @@
+name: Selenium Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t selenium-tests .
+
+      - name: Run tests in container
+        run: |
+          mkdir -p reports logs
+          docker run --rm \
+            -v "$PWD/reports:/app/reports" \
+            -v "$PWD/logs:/app/logs" \
+            selenium-tests
+
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            reports/
+            logs/
