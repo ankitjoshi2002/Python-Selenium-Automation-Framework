@@ -7,8 +7,8 @@ class LoginPage(BasePage):
         # self.driver = driver
         super().__init__(driver)
 
-    def open_url(self):
-        self.navigate_to("https://practicetestautomation.com/practice-test-login/")
+    def open_url(self, url):
+        self.navigate_to(url)
 
     def input_credentials(self, uname,pwd):
         self.enter_text(LoginPageLocators.USERNAME, uname)
